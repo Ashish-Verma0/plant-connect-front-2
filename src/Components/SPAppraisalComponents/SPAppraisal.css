@@ -1,0 +1,15 @@
+.tableRowNameWidthSP {
+  width: 10%;
+}
+.tableRowNumberWidthSP {
+  width: 7%;
+}
+.spam-SP-Appraisal {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.005em;
+  color: #808080;
+  padding-left: 10px;
+}

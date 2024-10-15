@@ -1,0 +1,30 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.card-item {
+  min-width: 15.563rem;
+  max-width: 300px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card-item:hover {
+  transform: scale(1.05);
+}
+
+.card-item.selected {
+  border: 2px solid var(--dark-red, #a52b0e);
+}
+
+.table-display {
+  margin-top: 2rem;
+}
+
+/* .card-typo .MuiTypography-root {
+  font-family: "DM Sans", sans-serif;
+} */

@@ -1,0 +1,27 @@
+.about-text {
+  color: #9e9e9e;
+}
+
+.about-heading {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0.005em;
+  color: #808080;
+}
+.responsive-image {
+  margin-right: -40px;
+}
+
+@media (min-width: 100px) and (max-width: 1200px) {
+  .responsive-image {
+    margin-right: -69px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .responsive-image {
+    margin-right: -77px;
+  }
+}

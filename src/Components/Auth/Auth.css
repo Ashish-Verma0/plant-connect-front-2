@@ -1,0 +1,13 @@
+.cover-image {
+}
+
+.designation-disabled .MuiInputLabel-root {
+  background-color: white;
+}
+.designation-disabled .MuiOutlinedInput-input {
+  color: black;
+}
+/* .password-align
+  .MuiOutlinedInput-input.MuiInputBase-input.MuiInputBase-inputSizeSmall.MuiInputBase-inputAdornedEnd {
+  padding-bottom: 5px;
+} */

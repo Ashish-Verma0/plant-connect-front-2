@@ -1,0 +1,65 @@
+.container-drag-drop {
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  height: 100%;
+  flex-direction: row;
+}
+
+.list {
+  background-color: #ffffff;
+  border-radius: 8px;
+  width: 230px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.h3-drag-drop {
+  text-align: center;
+  color: #ffffff;
+  background-color: #43c17a;
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 10px;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+}
+
+.scrollable {
+  height: calc(100% - 50px);
+  overflow-y: auto;
+  width: 100%;
+  padding: 0px 8px 8px 8px;
+}
+
+.item {
+  background-color: #befce8;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+  color: #004d40;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.dragAndDropHeading {
+  width: 100px;
+  height: 198px;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 122%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.005em;
+  color: #808080;
+  flex-direction: column;
+  height: 100%;
+}

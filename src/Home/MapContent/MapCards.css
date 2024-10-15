@@ -1,0 +1,22 @@
+.map-card-style .MuiTypography-root {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+
+.custom-typography {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.1rem !important;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  text-align: center;
+  color: #808080;
+}
+
+.custom-number {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  text-align: center;
+  color: #ffffff;
+}

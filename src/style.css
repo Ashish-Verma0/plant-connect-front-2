@@ -1,0 +1,17 @@
+@media screen and (min-width: 200px) and (max-width: 500px) {
+  #form {
+    display: flex;
+    flex-direction: column;
+  }
+  .MuiInputBase-root {
+    width: 300px !important;
+  }
+}
+#text-color {
+  color: #808080 !important;
+  border: 1px solid red;
+}
+
+.colorCodeTable {
+  color: #808080 !important;
+}

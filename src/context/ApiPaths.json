@@ -1,0 +1,13 @@
+{
+    "endPoints": {
+       "login":"login",
+        "landingData":"landingData",
+        "fetchDetails":"fetchDetails",
+        "farmerDetails":"farmerDetails",
+        "cropDetails":"cropDetails",
+        "api":"api/role",
+        "refresh":"refresh",
+        "getNotification":"getNotification",
+        "deleteNotification ":"deleteNotification"
+    }
+}

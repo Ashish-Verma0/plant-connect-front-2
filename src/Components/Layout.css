@@ -1,0 +1,27 @@
+/* Style for the overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  z-index: 999; /* behind the loader but above the rest of the content */
+}
+
+/* Style for the loader container */
+.loader-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* above the overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading {
+  opacity: 0.5; /* optional, to visually indicate that the page is not interactable */
+  pointer-events: none; /* disable all pointer events */
+}

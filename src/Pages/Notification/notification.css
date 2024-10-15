@@ -1,0 +1,188 @@
+.file-btn {
+  height: 150px;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  color: #5d4dcc;
+  background-color: #fff;
+  border: 1.5px dashed #5d4dcc;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.file-btn:hover {
+  color: #5d4dcc;
+  background-color: #fff;
+}
+
+.file-btn span {
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  color: #5d4dcc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  background-color: #f1efff;
+}
+
+.file-card {
+  width: 340px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid rgba(117, 96, 255, 0.281);
+  border-radius: 6px;
+  padding: 3px 15px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.file-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.filedesc {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  transition: background-color 0.3s ease;
+}
+
+.file-info h6 {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.progress-bg {
+  width: 100%;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.076);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.progress {
+  width: 0%;
+  height: 1%;
+  background-color: #5d4dcc;
+  border-radius: 8px;
+  transition: width 0.5s ease;
+}
+
+.FileIcon {
+  font-size: 30px;
+  color: #7460ff;
+}
+
+.close-icon {
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.file-info button,
+.check-circle {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: #463a99;
+  background-color: #f1efff;
+  border: none;
+  border-radius: 30px;
+}
+
+.upload-btn {
+  width: 200px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #7460ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* ------------drag and drop css */
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+  transition: 0.5s;
+  outline: none;
+}
+
+/* ------------ */
+
+.card {
+  box-shadow: 0px 4px 8px rgb(0 0 0 / 16%);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background-color: #fff;
+  border: none;
+}
+.kb-modal-data-title {
+  margin-bottom: 10px;
+}
+.kb-data-title h6 {
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.kb-file-upload {
+  margin-bottom: 20px;
+}
+.file-upload-box {
+  border: 1px dashed #b6bed1;
+  background-color: #f0f2f7;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8194aa;
+  font-weight: 400;
+  font-size: 15px;
+}
+.file-upload-box .file-upload-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.file-link {
+  color: #475f7b;
+  text-decoration: underline;
+  margin-left: 3px;
+}
+.file-upload-box .file-link:hover {
+  text-decoration: none;
+}
+.file-atc-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}

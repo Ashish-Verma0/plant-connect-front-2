@@ -1,0 +1,48 @@
+.poster-container {
+  display: flex;
+  background-color: #ffffff;
+}
+
+.Img_card {
+  width: 100%;
+  height: 100%;
+}
+
+.scrolling-text-wrapper {
+  overflow: hidden;
+  flex-grow: 1;
+  position: relative;
+}
+
+.scrolling-text {
+  display: inline-block;
+  animation: scroll 30s linear infinite;
+  font-family: "Poppins", sans-serif;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.announcement-strip > .MuiGrid-item {
+  flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+  .announcement-strip {
+    padding: 0rem 0.5rem;
+  }
+
+  .scrolling-text-wrapper {
+    flex-grow: 1;
+  }
+
+  .scrolling-text {
+    display: inline-flex;
+  }
+}

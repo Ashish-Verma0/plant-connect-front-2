@@ -1,0 +1,5 @@
+.colorCodeTableBlue {
+  color: blue !important;
+  text-decoration: underline;
+  cursor: pointer;
+}
