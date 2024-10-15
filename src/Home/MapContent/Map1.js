@@ -78,14 +78,10 @@ export default function Map1({
   };
 
   const onLoad = useCallback(function callback(map) {}, []);
-  // const onLoad = useCallback(function callback(map) {
-  //   setMapInstance(map);
-  // }, []);
 
   const getColor = (index) => {
-    return colorList[index % colorList.length] || "#FFA07A"; // Fallback color if colorList runs out
+    return colorList[index % colorList.length] || "#FFA07A";
   };
-  // Function to calculate the geographic center from district centers
   const calculateCenter = (districts) => {
     let totalLat = 0;
     let totalLng = 0;
@@ -99,31 +95,27 @@ export default function Map1({
     return { lat: totalLat / count, lng: totalLng / count };
   };
 
-  // Function to calculate the zoom level based on bounding boxes (dummy approach)
   const calculateZoom = (districts) => {
     let minZoom = Number.POSITIVE_INFINITY;
 
-    // Get the lowest zoom value (you can adjust this based on your criteria)
     districts.forEach((district) => {
       if (district.zoom < minZoom) {
         minZoom = district.zoom;
       }
     });
 
-    // Adjust zoom level as needed
-    return minZoom - 1.2; // Arbitrary adjustment
+    return minZoom - 1.2;
   };
   const fetchData = async (query) => {
     const url = new URL(
       `${process.env.REACT_APP_API_URL_LOCAL}/fetchCoOrdinate`
     );
     const params = new URLSearchParams();
-    // Append each query key
     Object.keys(query).forEach((key) => {
       if (Array.isArray(query[key])) {
-        params.append(key, JSON.stringify(query[key])); // Send array as a JSON string
+        params.append(key, JSON.stringify(query[key]));
       } else {
-        params.append(key, query[key]); // Handle normal key-value pairs
+        params.append(key, query[key]);
       }
     });
     url.search = params;
@@ -335,7 +327,7 @@ export default function Map1({
             !isActive("/spPage") &&
             !isActive("/sla") && (
               <Legend
-                selectedState={selectedState}
+                selectedState={"Uttarakhand"}
                 LegendList={LegendList}
                 onDistrictClick={handleDistrictClick}
               />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,8 +7,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/system";
-import edit from "../../assets/images/edit.png";
-import deleteIcon from "../../assets/images/delete.png";
 import {
   Box,
   Grid,
@@ -16,15 +14,19 @@ import {
   Skeleton,
   Typography,
   Pagination,
-  IconButton,
   Button,
+  TextField,
 } from "@mui/material";
 import NotificationLoder from "../../Home/NotificationLoder";
+
 export default function PlantModalTable({ loading, tableData, headCells }) {
   const [search, setSearch] = useState("");
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(10);
   const [filteredData, setFilteredData] = useState([]);
+  const [requirements, setRequirements] = useState({});
+  const [res, setRes] = useState([]);
+  const inputRefs = useRef({});
 
   useEffect(() => {
     if (tableData?.length) {
@@ -36,12 +38,34 @@ export default function PlantModalTable({ loading, tableData, headCells }) {
     }
   }, [search, tableData]);
 
+  const handleRequirementChange = (event, nurseryId) => {
+    const { value } = event.target;
+    setRequirements((prevRequirements) => ({
+      ...prevRequirements,
+      [nurseryId]: value,
+    }));
+  };
+
+  const handleAddRequirement = (nursery) => {
+    const nurseryId = nursery.id;
+    const nurseryRequirement = requirements[nurseryId] || "";
+
+    if (nurseryRequirement) {
+      setRes((prevRes) => [...prevRes, { ...nursery, nurseryRequirement }]);
+      // Reset the requirement input field
+      setRequirements((prevRequirements) => ({
+        ...prevRequirements,
+        [nurseryId]: "", // Reset the input field after adding
+      }));
+    } else {
+      console.log("No requirement entered for this nursery.");
+      alert("Please enter a requirement before adding.");
+    }
+  };
+
   const handlePageChange = (event, value) => {
     setPageIndex(value - 1);
   };
-
-  const entriesStart = pageIndex * pageSize + 1;
-  const entriesEnd = Math.min((pageIndex + 1) * pageSize, filteredData.length);
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     borderBottom: 0,
@@ -54,68 +78,21 @@ export default function PlantModalTable({ loading, tableData, headCells }) {
     },
   }));
 
-  const StyledTableContainer = styled(TableContainer)({
+  const StyledTableContainer = styled(TableContainer)(() => ({
     borderRadius: 12,
     width: "100%",
     minHeight: { xs: "300px", md: "400px", lg: "628px" },
     boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.15)",
-    overflowX: "auto", // Enable horizontal scrolling if needed
-  });
-  const StyledTableRow = styled(TableRow)({
+    overflowX: "auto",
+  }));
+
+  const StyledTableRow = styled(TableRow)(() => ({
     "&:nth-of-type(even)": {
       backgroundColor: "#d4ecde",
     },
-  });
-  const calculateTotals = (data) => {
-    return data.reduce(
-      (totals, row) => {
-        const parseNumber = (value) => Number(value?.replace(/,/g, ""));
-        totals.stateCount += parseNumber(row.stateCount);
-        totals.districtCount += parseNumber(row.districtCount);
-        totals.fpoCount += parseNumber(row.fpoCount);
-        totals.figCount += parseNumber(row.figCount);
-        totals.landArea += parseNumber(row.landArea);
-        totals.farmerCount += parseNumber(row.farmerCount);
-        for (let key in totals) {
-          totals[key] = Math.round((totals[key] + Number.EPSILON) * 100) / 100;
-        }
-        return totals;
-      },
-      {
-        stateCount: 0,
-        districtCount: 0,
-        fpoCount: 0,
-        figCount: 0,
-        landArea: 0,
-        farmerCount: 0,
-      }
-    );
-  };
+  }));
 
-  const totals = calculateTotals(filteredData);
-  const renderSkeletonRows = (numRows) => {
-    return Array.from({ length: numRows }).map((_, index) => (
-      <StyledTableRow key={index}>
-        {headCells.map((headCell) => (
-          <StyledTableCell key={headCell.id} align="center">
-            <Skeleton variant="text" />
-          </StyledTableCell>
-        ))}
-      </StyledTableRow>
-    ));
-  };
-
-  const renderPlaceholderRows = (numRows) => {
-    return Array.from({ length: numRows }).map((_, index) => (
-      <StyledTableRow key={`placeholder-${index}`}>
-        {headCells.map((headCell) => (
-          <StyledTableCell key={headCell.id} align="center">
-            &nbsp;
-          </StyledTableCell>
-        ))}
-      </StyledTableRow>
-    ));
-  };
+  console.log("Res array:", res);
 
   return (
     <React.Fragment>
@@ -144,60 +121,70 @@ export default function PlantModalTable({ loading, tableData, headCells }) {
             </TableHead>
             <TableBody>
               {loading ? (
-                renderSkeletonRows(10)
+                Array.from({ length: 10 }).map((_, index) => (
+                  <StyledTableRow key={index}>
+                    {headCells.map((headCell) => (
+                      <StyledTableCell key={headCell.id} align="center">
+                        <Skeleton variant="text" />
+                      </StyledTableCell>
+                    ))}
+                  </StyledTableRow>
+                ))
               ) : filteredData.length > 0 ? (
                 filteredData
                   .slice(pageIndex * pageSize, (pageIndex + 1) * pageSize)
                   .map((row, ind) => {
+                    const hasRequirement = res.some(
+                      (item) => item.id === row.id
+                    );
                     return (
                       <StyledTableRow key={ind}>
-                        <StyledTableCell
-                          align="center"
-                          className="colorCodeTable tableRowNumberWidth"
-                        >
-                          {pageIndex * 10 + ind + 1}
+                        <StyledTableCell align="center">
+                          {pageIndex * pageSize + ind + 1}
                         </StyledTableCell>
-                        <StyledTableCell
-                          align="center"
-                          className="colorCodeTable"
-                        >
+                        <StyledTableCell align="center">
                           {row.name}
                         </StyledTableCell>
-                        <StyledTableCell
-                          align="center"
-                          className="colorCodeTable tableRowNameWidth"
-                        >
+                        <StyledTableCell align="center">
                           {row.availability}
                         </StyledTableCell>
-                        <StyledTableCell
-                          align="center"
-                          className="colorCodeTable tableRowNumberWidth"
-                        >
+                        <StyledTableCell align="center">
                           {row.address}
                         </StyledTableCell>
-                        <StyledTableCell
-                          align="center"
-                          className="colorCodeTable tableRowNumberWidth"
-                        >
+                        <StyledTableCell align="center">
                           {row.contact}
                         </StyledTableCell>
-                        <StyledTableCell
-                          align="center"
-                          className="colorCodeTable tableRowNumberWidth"
-                        >
+                        <StyledTableCell align="center">
                           {row.distance}
                         </StyledTableCell>
-                        <StyledTableCell
-                          align="center"
-                          className="colorCodeTable tableRowNumberWidth"
-                        >
-                          {row.requirement}
+                        <StyledTableCell align="center">
+                          <TextField
+                            variant="outlined"
+                            name="requirements"
+                            size="small"
+                            label="Requirement"
+                            value={requirements[row.id] || ""}
+                            onChange={(event) =>
+                              handleRequirementChange(event, row.id)
+                            }
+                          />
                         </StyledTableCell>
-                        <StyledTableCell
-                          align="center"
-                          className="colorCodeTable tableRowNumberWidth"
-                        >
-                          <Button className="SP-table-Button">ADD</Button>
+                        <StyledTableCell align="center">
+                          {!hasRequirement ? (
+                            <Button
+                              onClick={() => handleAddRequirement(row)}
+                              className="SP-table-Button"
+                            >
+                              ADD
+                            </Button>
+                          ) : (
+                            <Typography
+                              className="SP-table-Button"
+                              style={{ color: "green" }}
+                            >
+                              Added
+                            </Typography>
+                          )}
                         </StyledTableCell>
                       </StyledTableRow>
                     );
@@ -215,19 +202,6 @@ export default function PlantModalTable({ loading, tableData, headCells }) {
                   </StyledTableCell>
                 </TableRow>
               )}
-              {!loading &&
-                filteredData.length < pageSize &&
-                filteredData.length > 0 &&
-                renderPlaceholderRows(
-                  Math.max(
-                    0,
-                    pageSize -
-                      filteredData.slice(
-                        pageIndex * pageSize,
-                        (pageIndex + 1) * pageSize
-                      ).length
-                  )
-                )}
             </TableBody>
           </Table>
         </StyledTableContainer>
@@ -239,8 +213,9 @@ export default function PlantModalTable({ loading, tableData, headCells }) {
         >
           <Grid item>
             <Typography variant="caption">
-              Showing {entriesStart} - {entriesEnd} of {filteredData.length}{" "}
-              entries
+              Showing {pageIndex * pageSize + 1} -{" "}
+              {Math.min((pageIndex + 1) * pageSize, filteredData.length)} of{" "}
+              {filteredData.length} entries
             </Typography>
           </Grid>
           <Grid item>

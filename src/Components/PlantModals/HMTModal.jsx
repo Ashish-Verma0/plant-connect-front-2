@@ -88,7 +88,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} mt={0.1}>
-            <Grid item lg={4} xs={6}>
+            <Grid item lg={4} sm={6} xs={12}>
               <TextField
                 fullWidth
                 placeholder="Farmer Name"
@@ -97,7 +97,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
                 className="textfield-form"
               />
             </Grid>
-            <Grid item lg={4} xs={6}>
+            <Grid item lg={4} sm={6} xs={12}>
               <TextField
                 fullWidth
                 placeholder="Mobile Number"
@@ -106,7 +106,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
                 className="textfield-form"
               />
             </Grid>
-            <Grid item lg={4} xs={6}>
+            <Grid item lg={4} sm={6} xs={12}>
               <TextField
                 fullWidth
                 placeholder="Farmer Lat."
@@ -115,7 +115,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
                 className="textfield-form"
               />
             </Grid>
-            <Grid item lg={4} xs={6}>
+            <Grid item lg={4} sm={6} xs={12}>
               <TextField
                 fullWidth
                 placeholder="Farmer Long"
@@ -124,7 +124,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
                 className="textfield-form"
               />
             </Grid>
-            <Grid item lg={4} xs={6}>
+            <Grid item lg={4} sm={6} xs={12}>
               <TextField
                 fullWidth
                 placeholder="Farmer Pin code"
@@ -133,7 +133,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
                 className="textfield-form"
               />
             </Grid>
-            <Grid item lg={4} xs={6}>
+            <Grid item lg={4} sm={6} xs={12}>
               <TextField
                 fullWidth
                 placeholder="Aadhaar Number"
@@ -142,7 +142,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
                 className="textfield-form"
               />
             </Grid>
-            <Grid item lg={4} xs={6}>
+            <Grid item lg={4} sm={6} xs={12}>
               <TextField
                 fullWidth
                 placeholder="Farmer Address"
@@ -151,7 +151,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
                 className="textfield-form"
               />
             </Grid>
-            <Grid item lg={4} xs={6}>
+            <Grid item lg={4} sm={6} xs={12}>
               <Select
                 fullWidth
                 displayEmpty
@@ -170,7 +170,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
                 ))}
               </Select>
             </Grid>
-            <Grid item lg={4} xs={6}>
+            <Grid item lg={4} sm={6} xs={12}>
               <Select
                 fullWidth
                 displayEmpty
@@ -189,7 +189,7 @@ const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
                 ))}
               </Select>
             </Grid>
-            <Grid item lg={4} xs={12}>
+            <Grid item lg={4} sm={6} xs={122}>
               <Select
                 fullWidth
                 displayEmpty
