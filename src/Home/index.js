@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import MapBox from "./MapContent/MapBox";
 import { getFetch } from "../Components/API/Api";
 import CloseIcon from "@mui/icons-material/Close";
@@ -185,9 +185,22 @@ const Home = () => {
     },
   ];
 
+  const [HMTModalopen, setHMTModalOpen] = useState(false);
+
+  const handleClickHMTModalOpen = () => {
+    setHMTModalOpen(true);
+  };
+
+  const handleHMTModalClose = () => {
+    setHMTModalOpen(false);
+  };
+
   return (
     <React.Fragment>
-      <HMTModal />
+      <HMTModal
+        HMTModalopen={HMTModalopen}
+        handleHMTModalClose={handleHMTModalClose}
+      />
       <Grid
         style={{
           marginTop: "3rem",
@@ -257,6 +270,7 @@ const Home = () => {
         districtList={stateDropDown}
         LegendList={uniqueDistricts}
       />
+
       <Grid
         container
         spacing={4}
@@ -265,6 +279,31 @@ const Home = () => {
           padding: "20px 33px 20px 33px",
         }}
       >
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={12}
+          sx={{
+            display: "flex",
+            justifyContent: "end",
+            marginBottom: "-60px",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            style={{
+              borderRadius: "20px",
+              color: "white",
+              backgroundColor: "#426d52",
+            }}
+            onClick={handleClickHMTModalOpen}
+          >
+            Place Order
+          </Button>
+        </Grid>
         <Grid item xs={12} sm={12} md={12} lg={12}>
           <PlantTableContainer
             level={level}

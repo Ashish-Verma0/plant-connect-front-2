@@ -13,38 +13,51 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const HMTModal = () => {
-  const [open, setOpen] = useState(false);
-  const [selectedVariety, setSelectedVariety] = useState("");
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleVarietyChange = (event) => {
-    setSelectedVariety(event.target.value);
-  };
-
+const HMTModal = ({ HMTModalopen, handleHMTModalClose }) => {
   const field = [
     {
       options: ["Option 1", "Option 2", "Option 3"],
     },
   ];
+  const headCells = [
+    { id: "id", label: "S.No" },
+    { id: "Nursery Name", label: "Nursery Name" },
+    { id: "Availability", label: "Availability" },
+    { id: "Address", label: "Address" },
+    { id: "Contact Detail", label: "Contact Detail" },
+    { id: "Distance", label: "Distance" },
+    { id: "Requirement", label: "Requirement" },
+    { id: "Action", label: "Action" },
+  ];
+  const nurseries = [
+    {
+      id: 1,
+      name: "A",
+      availability: 8,
+      address: "A",
+      contact: "1234567890",
+      distance: "A",
+      requirement: 0, // initial value
+    },
+    {
+      id: 2,
+      name: "B",
+      availability: 15,
+      address: "B",
+      contact: "844567890",
+      distance: "B",
+      requirement: 0,
+    },
+    // Add more objects following the same pattern
+  ];
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open Farmer Form
-      </Button>
       <Dialog
-        open={open}
+        open={HMTModalopen}
         TransitionComponent={Transition}
         keepMounted
-        onClose={handleClose}
+        onClose={handleHMTModalClose}
         aria-describedby="alert-dialog-slide-description"
         maxWidth="lg"
         fullWidth
@@ -62,7 +75,7 @@ const HMTModal = () => {
           <span>Form</span>
           <IconButton
             aria-label="close"
-            onClick={handleClose}
+            onClick={handleHMTModalClose}
             sx={{
               position: "absolute",
               right: 8,
@@ -125,7 +138,6 @@ const HMTModal = () => {
                 fullWidth
                 placeholder="Aadhaar Number"
                 size="small"
-                type="password"
                 variant="outlined"
                 className="textfield-form"
               />
@@ -142,8 +154,6 @@ const HMTModal = () => {
             <Grid item lg={4} xs={6}>
               <Select
                 fullWidth
-                value={selectedVariety}
-                onChange={handleVarietyChange}
                 displayEmpty
                 className="textfield-form"
                 variant="outlined"
@@ -163,8 +173,6 @@ const HMTModal = () => {
             <Grid item lg={4} xs={6}>
               <Select
                 fullWidth
-                value={selectedVariety}
-                onChange={handleVarietyChange}
                 displayEmpty
                 className="textfield-form"
                 variant="outlined"
@@ -184,8 +192,6 @@ const HMTModal = () => {
             <Grid item lg={4} xs={12}>
               <Select
                 fullWidth
-                value={selectedVariety}
-                onChange={handleVarietyChange}
                 displayEmpty
                 className="textfield-form"
                 variant="outlined"
@@ -202,11 +208,18 @@ const HMTModal = () => {
                 ))}
               </Select>
             </Grid>
+            <Grid item xs={12}>
+              <PlantModalTable
+                loading={false}
+                headCells={headCells}
+                tableData={nurseries}
+              />
+            </Grid>
           </Grid>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Submit</Button>
+          <Button onClick={handleHMTModalClose}>Cancel</Button>
+          <Button onClick={handleHMTModalClose}>Submit</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
